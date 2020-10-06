@@ -6,13 +6,14 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'app',
   width: 1080,
   height: 1920,
+  backgroundColor: '#FFE7CF',
   scale: {
     mode: Phaser.Scale.HEIGHT_CONTROLS_WIDTH,
     autoCenter: Phaser.Scale.CENTER_BOTH
   },
   autoFocus: true,
   render: {
-    pixelArt: true, // Prevents blurring, see docs https://photonstorm.github.io/phaser3-docs/Phaser.Core.Config.html#pixelArt
+    pixelArt: true
   },
   input: {
     windowEvents: false
