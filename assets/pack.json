@@ -1,0 +1,56 @@
+{
+  "hyperMatchPack": {
+    "files": [
+      {
+        "type": "image",
+        "key": "blackTile",
+        "url": "./images/black-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "blueTile",
+        "url": "./images/blue-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "brownTile",
+        "url": "./images/brown-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "greenTile",
+        "url": "./images/green-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "greyTile",
+        "url": "./images/grey-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "orangeTile",
+        "url": "./images/orange-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "pinkTile",
+        "url": "./images/pink-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "purpleTile",
+        "url": "./images/purple-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "redTile",
+        "url": "./images/red-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "yellowTile",
+        "url": "./images/yellow-tile.png"
+      }
+    ]
+  }
+}
