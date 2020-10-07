@@ -1,4 +1,5 @@
 import 'phaser';
+import { DIFFICULTY } from '../constants';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -14,6 +15,6 @@ export default class PreloadScene extends Phaser.Scene {
   }
 
   update(time: number, delta: number): void {
-    this.scene.start('GameScene');
+    this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY });
   }
 }
