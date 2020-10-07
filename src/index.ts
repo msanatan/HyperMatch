@@ -17,6 +17,9 @@ const config: Phaser.Types.Core.GameConfig = {
   render: {
     pixelArt: true
   },
+  physics: {
+    default: 'arcade',
+  },
   input: {
     windowEvents: false
   },
