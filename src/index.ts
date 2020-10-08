@@ -1,6 +1,7 @@
 import 'phaser';
 import PreloadScene from './scenes/PreloadScene';
 import GameScene from './scenes/GameScene';
+import HUDScene from './scenes/HUDScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   title: 'Hyper Match',
@@ -23,7 +24,7 @@ const config: Phaser.Types.Core.GameConfig = {
   input: {
     windowEvents: false
   },
-  scene: [PreloadScene, GameScene]
+  scene: [PreloadScene, GameScene, HUDScene]
 };
 
 export default new Phaser.Game(config);
