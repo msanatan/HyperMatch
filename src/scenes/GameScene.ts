@@ -21,6 +21,7 @@ export default class GameScene extends Phaser.Scene {
 
   create(): void {
     this.score = 0;
+    this.registry.set('score', 0);
     this.tileGroup = this.add.group();
     this.collectorGroup = this.add.group();
     this.descendingGroup = this.add.group();
@@ -52,6 +53,7 @@ export default class GameScene extends Phaser.Scene {
   checkMatch(incomingTile: TileSprite, collectorTile: CollectorSprite): void {
     if (incomingTile.textureKey === collectorTile.textureKey) {
       this.score++;
+      this.registry.set('score', this.score); // Update registry so HUD will be updated
       incomingTile.destroy(true);
     } else {
       // TODO: show game over screen
