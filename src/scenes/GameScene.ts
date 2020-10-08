@@ -9,6 +9,7 @@ export default class GameScene extends Phaser.Scene {
   private collectorGroup: Phaser.GameObjects.Group;
   private descendingGroup: Phaser.GameObjects.Group;
   private tileGenerateEvent: Phaser.Time.TimerEvent;
+  private score: number;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -19,6 +20,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create(): void {
+    this.score = 0;
     this.tileGroup = this.add.group();
     this.collectorGroup = this.add.group();
     this.descendingGroup = this.add.group();
@@ -30,17 +32,31 @@ export default class GameScene extends Phaser.Scene {
         this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
           if (collectorSprite.selected) {
             collectorSprite.setTexture(tileSprite.textureKey);
+            collectorSprite.textureKey = tileSprite.textureKey;
           }
         });
       });
 
     this.tileGenerateEvent = this.time.addEvent({
-      delay: 5000,
-      startAt: 100,
+      delay: 1500,
+      startAt: 500,
       callback: this.addDescendingTile,
       callbackScope: this,
       loop: true,
     });
+
+    // Check for collisions
+    this.physics.add.overlap(this.descendingGroup, this.collectorGroup, this.checkMatch, null, this);
+  }
+
+  checkMatch(incomingTile: TileSprite, collectorTile: CollectorSprite): void {
+    if (incomingTile.textureKey === collectorTile.textureKey) {
+      this.score++;
+      incomingTile.destroy(true);
+    } else {
+      // TODO: show game over screen
+      this.scene.restart({ difficulty: this.difficulty });
+    }
   }
 
   addTiles(): void {
@@ -65,7 +81,7 @@ export default class GameScene extends Phaser.Scene {
       case DIFFICULTY.EASY:
         // Add player tiles to scene
         const newTile = new TileSprite(this, 390, -150, tileTextureKeys[Phaser.Math.Between(0, 5)]);
-        newTile.setVelocityY(Phaser.Math.Between(100, 120));
+        newTile.setVelocityY(Phaser.Math.Between(190, 200));
         this.descendingGroup.add(newTile);
         break;
     }
