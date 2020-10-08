@@ -7,6 +7,10 @@ export default class TileSprite extends Phaser.Physics.Arcade.Sprite {
     return this._textureKey;
   }
 
+  set textureKey(key: string) {
+    this._textureKey = key;
+  }
+
   constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame: number = 0) {
     super(scene, x, y, texture, frame);
     this._textureKey = texture;
