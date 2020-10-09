@@ -39,8 +39,8 @@ export default class GameScene extends Phaser.Scene {
       });
 
     this.tileGenerateEvent = this.time.addEvent({
-      delay: 1500,
-      startAt: 500,
+      delay: 2500,
+      startAt: 2000,
       callback: this.addDescendingTile,
       callbackScope: this,
       loop: true,
@@ -83,7 +83,7 @@ export default class GameScene extends Phaser.Scene {
       case DIFFICULTY.EASY:
         // Add player tiles to scene
         const newTile = new TileSprite(this, 390, -150, tileTextureKeys[Phaser.Math.Between(0, 5)]);
-        newTile.setVelocityY(Phaser.Math.Between(190, 200));
+        newTile.setVelocityY(Phaser.Math.Between(200, 220));
         this.descendingGroup.add(newTile);
         break;
     }
