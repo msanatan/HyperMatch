@@ -9,12 +9,12 @@ export default class HUDScene extends Phaser.Scene {
 
   create(): void {
     const hudTextConfig = {
-      fontFamily: 'Gugi Regular',
+      fontFamily: 'Gugi Regular, Helvetica, Arial',
       fontSize: '60px',
       color: '#FFFFFF',
     };
 
-    this.scoreText = this.add.text(724, 40, 'Score: 0', hudTextConfig);
+    this.scoreText = this.add.text(764, 40, 'Score: 0', hudTextConfig);
     this.scoreText.setOrigin(0, 0);
 
     // Update score
