@@ -14,7 +14,28 @@ export default class PreloadScene extends Phaser.Scene {
     );
   }
 
-  update(time: number, delta: number): void {
+  async create() {
+    // Load custom fonts
+    try {
+      await this.loadFonts('Gugi Regular', 'fonts/Gugi-Regular.ttf');
+    } catch (error) {
+      console.error('Could not load custom fonts');
+    }
+
     this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY });
+    this.scene.start('HUDScene');
+    this.scene.bringToTop('HUDScene');
+  }
+
+  async loadFonts(name: string, url: string) {
+    const font = new FontFace(name, `url(${url})`);
+
+    try {
+      await font.load();
+      document.fonts.add(font);
+      document.body.classList.add('fonts-loaded');
+    } catch (error) {
+      console.error(`Could not load font ${name}: ${error.message}`);
+    };
   }
 }
