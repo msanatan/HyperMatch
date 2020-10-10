@@ -15,7 +15,7 @@ export default class TileSprite extends Phaser.Physics.Arcade.Sprite {
     super(scene, x, y, texture, frame);
     this._textureKey = texture;
     this.setOrigin(0, 0);
-    this.setScale(1, 1.25);
+    this.setScale(0.8, 0.8);
     this.scene.physics.world.enable(this);
     this.body = this.body as Phaser.Physics.Arcade.Body; // TypeScript cast
     this.body.setGravity(0, 0);
