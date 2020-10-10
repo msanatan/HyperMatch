@@ -10,6 +10,10 @@ export default class GameScene extends Phaser.Scene {
   private descendingGroup: Phaser.GameObjects.Group;
   private tileGenerateEvent: Phaser.Time.TimerEvent;
   private score: number;
+  private tileStartX: number;
+  private tileStepX: number;
+  private tileStartY: number;
+  private tileStepY: number;
 
   constructor() {
     super({ key: 'GameScene' });
@@ -21,6 +25,10 @@ export default class GameScene extends Phaser.Scene {
 
   create(): void {
     this.score = 0;
+    this.tileStartX = 140;
+    this.tileStepX = 280;
+    this.tileStartY = 1380;
+    this.tileStepY = 260;
     this.registry.set('score', 0);
     this.tileGroup = this.add.group();
     this.collectorGroup = this.add.group();
@@ -65,15 +73,22 @@ export default class GameScene extends Phaser.Scene {
     switch (this.difficulty) {
       case DIFFICULTY.EASY:
         // Add player tiles to scene
-        this.tileGroup.add(new TileSprite(this, 70, 1420, 'redTile'));
-        this.tileGroup.add(new TileSprite(this, 390, 1420, 'blueTile'));
-        this.tileGroup.add(new TileSprite(this, 710, 1420, 'yellowTile'));
-        this.tileGroup.add(new TileSprite(this, 70, 1635, 'greenTile'));
-        this.tileGroup.add(new TileSprite(this, 390, 1635, 'purpleTile'));
-        this.tileGroup.add(new TileSprite(this, 710, 1635, 'greyTile'));
+        for (let i = 0; i < 6; i++) {
+          let row = Math.floor(i / 3);
+          let col = i >= 3 ? i % 3 : i;
+          this.tileGroup.add(new TileSprite(
+            this,
+            this.tileStartX + (col * this.tileStepX),
+            this.tileStartY + (row * this.tileStepY),
+            tileTextureKeys[i])
+          );
+        }
 
         // Add collector tile
-        this.collectorGroup.add(new CollectorSprite(this, 390, 1150, true));
+        this.collectorGroup.add(new CollectorSprite(
+          this,
+          this.tileStartX + this.tileStepX,
+          this.tileStartY - this.tileStepY, true));
         break;
     }
   }
@@ -82,7 +97,12 @@ export default class GameScene extends Phaser.Scene {
     switch (this.difficulty) {
       case DIFFICULTY.EASY:
         // Add player tiles to scene
-        const newTile = new TileSprite(this, 390, -150, tileTextureKeys[Phaser.Math.Between(0, 5)]);
+        const newTile = new TileSprite(
+          this,
+          this.tileStartX + this.tileStepX,
+          -150,
+          tileTextureKeys[Phaser.Math.Between(0, 5)]
+        );
         newTile.setVelocityY(Phaser.Math.Between(200, 220));
         this.descendingGroup.add(newTile);
         break;
