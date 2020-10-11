@@ -1,5 +1,4 @@
 import 'phaser';
-import { DIFFICULTY } from '../constants';
 
 export default class PreloadScene extends Phaser.Scene {
   constructor() {
@@ -22,9 +21,7 @@ export default class PreloadScene extends Phaser.Scene {
       console.error('Could not load custom fonts');
     }
 
-    this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY });
-    this.scene.start('HUDScene');
-    this.scene.bringToTop('HUDScene');
+    this.scene.start('TitleScene');
   }
 
   async loadFonts(name: string, url: string) {
