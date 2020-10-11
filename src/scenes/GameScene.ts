@@ -48,7 +48,7 @@ export default class GameScene extends Phaser.Scene {
     this.tileGenerateEvent = this.time.addEvent({
       delay: 2500,
       startAt: 2000,
-      callback: this.addDescendingTile,
+      callback: this.addBall,
       callbackScope: this,
       loop: true,
     });
@@ -94,16 +94,16 @@ export default class GameScene extends Phaser.Scene {
     }
   }
 
-  addDescendingTile(): void {
+  addBall(): void {
     switch (this.difficulty) {
       case DIFFICULTY.EASY:
         const colour = tileTextureColours[Phaser.Math.Between(0, 5)];
         // Add player tiles to scene
         const newTile = new TileSprite(
           this,
-          this.tileStartX + this.tileStepX,
+          this.tileStartX + this.tileStepX + 75,
           -150,
-          colour.tile,
+          colour.ball,
           colour
         );
         newTile.setVelocityY(Phaser.Math.Between(200, 220));
