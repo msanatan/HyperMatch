@@ -1,26 +1,27 @@
 import 'phaser';
+import { TextureColourMap } from '../constants';
 
 export default class TileSprite extends Phaser.Physics.Arcade.Sprite {
-  private _textureKey: string;
+  protected _colour: TextureColourMap;
 
-  get textureKey(): string {
-    return this._textureKey;
+  get colour(): TextureColourMap {
+    return this._colour;
   }
 
-  set textureKey(key: string) {
-    this._textureKey = key;
+  set colour(colour: TextureColourMap) {
+    this._colour = colour;
   }
 
-  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame: number = 0) {
+  constructor(scene: Phaser.Scene, x: number, y: number, texture: string, colour: TextureColourMap, frame: number = 0, ) {
     super(scene, x, y, texture, frame);
-    this._textureKey = texture;
+    this._colour = colour;
     this.setOrigin(0, 0);
     this.setScale(0.8, 0.8);
     this.scene.physics.world.enable(this);
-    this.body = this.body as Phaser.Physics.Arcade.Body; // TypeScript cast
-    this.body.setGravity(0, 0);
-    this.body.setVelocity(0, 0);
-    this.body.setImmovable(true);
+    (<Phaser.Physics.Arcade.Body>this.body).
+      setGravity(0, 0).
+      setVelocity(0, 0).
+      setImmovable(true);
     this.scene.add.existing(this);
   }
 }
