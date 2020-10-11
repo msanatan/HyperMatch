@@ -2,6 +2,7 @@ import 'phaser';
 import PreloadScene from './scenes/PreloadScene';
 import GameScene from './scenes/GameScene';
 import HUDScene from './scenes/HUDScene';
+import TitleScene from './scenes/TitleScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   title: 'Hyper Match',
@@ -9,7 +10,7 @@ const config: Phaser.Types.Core.GameConfig = {
   parent: 'app',
   width: 1080,
   height: 1920,
-  backgroundColor: '#FFE7CF',
+  backgroundColor: '#FFCC99',
   scale: {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH
@@ -21,7 +22,7 @@ const config: Phaser.Types.Core.GameConfig = {
   input: {
     windowEvents: false
   },
-  scene: [PreloadScene, GameScene, HUDScene]
+  scene: [PreloadScene, GameScene, HUDScene, TitleScene]
 };
 
 export default new Phaser.Game(config);
