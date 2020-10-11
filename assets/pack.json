@@ -95,6 +95,51 @@
         "type": "image",
         "key": "collectorYellowTile",
         "url": "./images/collector-yellow-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "blueBall",
+        "url": "./images/blue-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "brownBall",
+        "url": "./images/brown-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "greenBall",
+        "url": "./images/green-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "greyBall",
+        "url": "./images/grey-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "orangeBall",
+        "url": "./images/orange-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "pinkBall",
+        "url": "./images/pink-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "purpleBall",
+        "url": "./images/purple-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "redBall",
+        "url": "./images/red-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "yellowBall",
+        "url": "./images/yellow-ball.png"
       }
     ]
   }
