@@ -4,6 +4,8 @@ export enum DIFFICULTY {
   HARD
 }
 
+export const BALL_RADIUS: number = 75;
+
 export interface TextureColourMap {
   name: string;
   tile?: string;

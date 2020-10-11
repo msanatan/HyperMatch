@@ -1,5 +1,5 @@
 import 'phaser';
-import { DIFFICULTY, tileTextureColours } from '../constants';
+import { DIFFICULTY, tileTextureColours, BALL_RADIUS } from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
 
@@ -101,7 +101,7 @@ export default class GameScene extends Phaser.Scene {
         // Add player tiles to scene
         const newTile = new TileSprite(
           this,
-          this.tileStartX + this.tileStepX + 75,
+          this.tileStartX + this.tileStepX + BALL_RADIUS,
           -150,
           colour.ball,
           colour
