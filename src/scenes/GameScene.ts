@@ -1,5 +1,5 @@
 import 'phaser';
-import { DIFFICULTY, tileTextureKeys } from '../constants';
+import { DIFFICULTY, tileTextureColours } from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
 
@@ -40,8 +40,7 @@ export default class GameScene extends Phaser.Scene {
         // Find selected collected tile
         this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
           if (collectorSprite.selected) {
-            collectorSprite.setTexture(tileSprite.textureKey);
-            collectorSprite.textureKey = tileSprite.textureKey;
+            collectorSprite.updateColour(tileSprite.colour);
           }
         });
       });
@@ -59,7 +58,7 @@ export default class GameScene extends Phaser.Scene {
   }
 
   checkMatch(incomingTile: TileSprite, collectorTile: CollectorSprite): void {
-    if (incomingTile.textureKey === collectorTile.textureKey) {
+    if (incomingTile.colour === collectorTile.colour) {
       this.score++;
       this.registry.set('score', this.score); // Update registry so HUD will be updated
       incomingTile.destroy(true);
@@ -76,11 +75,13 @@ export default class GameScene extends Phaser.Scene {
         for (let i = 0; i < 6; i++) {
           let row = Math.floor(i / 3);
           let col = i >= 3 ? i % 3 : i;
+          const colour = tileTextureColours[i];
           this.tileGroup.add(new TileSprite(
             this,
             this.tileStartX + (col * this.tileStepX),
             this.tileStartY + (row * this.tileStepY),
-            tileTextureKeys[i])
+            colour.tile,
+            colour)
           );
         }
 
@@ -96,12 +97,14 @@ export default class GameScene extends Phaser.Scene {
   addDescendingTile(): void {
     switch (this.difficulty) {
       case DIFFICULTY.EASY:
+        const colour = tileTextureColours[Phaser.Math.Between(0, 5)];
         // Add player tiles to scene
         const newTile = new TileSprite(
           this,
           this.tileStartX + this.tileStepX,
           -150,
-          tileTextureKeys[Phaser.Math.Between(0, 5)]
+          colour.tile,
+          colour
         );
         newTile.setVelocityY(Phaser.Math.Between(200, 220));
         this.descendingGroup.add(newTile);
