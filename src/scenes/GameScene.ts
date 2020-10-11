@@ -19,11 +19,11 @@ export default class GameScene extends Phaser.Scene {
     super({ key: 'GameScene' });
   }
 
-  init(data: any): void {
+  create(data: any): void {
+    if (data.fadeIn) {
+      this.cameras.main.fadeIn(500, 0, 0, 0);
+    }
     this.difficulty = data.difficulty ? data.difficulty : DIFFICULTY.EASY;
-  }
-
-  create(): void {
     this.score = 0;
     this.tileStartX = 140;
     this.tileStepX = 280;

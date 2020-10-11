@@ -14,12 +14,36 @@ export default class TitleScene extends Phaser.Scene {
     };
 
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
+    const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
     const titleText = this.add.text(screenCenterX, 256, 'Hyper Match', titleTextConfig);
     titleText.setOrigin(0.5);
+
+    // Button style
+    const buttonTextConfig = {
+      fontFamily: 'Gugi Regular, Helvetica, Arial',
+      fontSize: '96px',
+      color: '#FFFFFF',
+    };
+    // Play button
+    const playButton = this.add.text(screenCenterX, screenCenterY, 'Play', buttonTextConfig);
+    playButton.setInteractive();
+    playButton.setOrigin(0.5);
+    playButton.on('pointerdown', () => {
+      this.cameras.main.fadeOut(500, 0, 0, 0); // Fade to black screen
+    });
+    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+      this.playGame();
+    });
+    playButton.on('pointerover', () => {
+      playButton.setFontSize(120);
+    });
+    playButton.on('pointerout', () => {
+      playButton.setFontSize(96);
+    });
   }
 
   playGame(): void {
-    this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY });
+    this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY, fadeIn: true });
     this.scene.start('HUDScene');
     this.scene.bringToTop('HUDScene');
   }
