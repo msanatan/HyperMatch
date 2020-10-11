@@ -3,11 +3,6 @@
     "files": [
       {
         "type": "image",
-        "key": "blackTile",
-        "url": "./images/black-tile.png"
-      },
-      {
-        "type": "image",
         "key": "blueTile",
         "url": "./images/blue-tile.png"
       },
@@ -50,6 +45,56 @@
         "type": "image",
         "key": "yellowTile",
         "url": "./images/yellow-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBlackTile",
+        "url": "./images/collector-black-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBlueTile",
+        "url": "./images/collector-blue-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBrownTile",
+        "url": "./images/collector-brown-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorGreenTile",
+        "url": "./images/collector-green-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorGreyTile",
+        "url": "./images/collector-grey-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorOrangeTile",
+        "url": "./images/collector-orange-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorPinkTile",
+        "url": "./images/collector-pink-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorPurpleTile",
+        "url": "./images/collector-purple-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorRedTile",
+        "url": "./images/collector-red-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorYellowTile",
+        "url": "./images/collector-yellow-tile.png"
       }
     ]
   }
