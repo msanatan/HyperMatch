@@ -30,6 +30,14 @@ export default class GameScene extends Phaser.Scene {
     if (data && data.fadeIn) {
       this.cameras.main.fadeIn(500, 0, 0, 0);
     }
+
+    // Remove text listener on HUD if it exists
+    // When a scene is stopped, Phaser does not remove event listeners that
+    // affect the textbox in HUD. It would crash every time a game was restarted
+    if (this.registry.events.listeners('changedata-score').length > 0) {
+      this.registry.events.off('changedata-score');
+    }
+
     this.state = STATE.PLAYING;
     this.difficulty = this.registry.get('difficulty');
     this.score = 0;
@@ -69,7 +77,6 @@ export default class GameScene extends Phaser.Scene {
       this.cameras.main.fadeOut(500, 0, 0, 0);
     });
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
-      this.scene.pause('GameScene');
       this.scene.stop('HUDScene');
       this.scene.start('GameOverScene');
     });
