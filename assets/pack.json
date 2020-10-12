@@ -140,6 +140,16 @@
         "type": "image",
         "key": "yellowBall",
         "url": "./images/yellow-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "btnExit",
+        "url": "./images/btn-exit.png"
+      },
+      {
+        "type": "image",
+        "key": "btnRetry",
+        "url": "./images/btn-retry.png"
       }
     ]
   }
