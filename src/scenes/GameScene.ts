@@ -3,7 +3,14 @@ import { DIFFICULTY, tileTextureColours, BALL_RADIUS } from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
 
+enum STATE {
+  PLAYING,
+  GAME_OVER,
+  TRANSITIONING
+}
+
 export default class GameScene extends Phaser.Scene {
+  private state: STATE;
   private difficulty: number;
   private tileGroup: Phaser.GameObjects.Group;
   private collectorGroup: Phaser.GameObjects.Group;
@@ -20,10 +27,11 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create(data: any): void {
-    if (data.fadeIn) {
+    if (data && data.fadeIn) {
       this.cameras.main.fadeIn(500, 0, 0, 0);
     }
-    this.difficulty = data.difficulty ? data.difficulty : DIFFICULTY.EASY;
+    this.state = STATE.PLAYING;
+    this.difficulty = this.registry.get('difficulty');
     this.score = 0;
     this.tileStartX = 140;
     this.tileStepX = 280;
@@ -55,6 +63,27 @@ export default class GameScene extends Phaser.Scene {
 
     // Check for collisions
     this.physics.add.overlap(this.descendingGroup, this.collectorGroup, this.checkMatch, null, this);
+
+    // Move to the game over scene after the shake effect
+    this.cameras.main.on(Phaser.Cameras.Scene2D.Events.SHAKE_COMPLETE, () => {
+      this.cameras.main.fadeOut(500, 0, 0, 0);
+    });
+    this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+      this.scene.pause('GameScene');
+      this.scene.stop('HUDScene');
+      this.scene.start('GameOverScene');
+    });
+  }
+
+  update(): void {
+    switch (this.state) {
+      case STATE.GAME_OVER:
+        this.cameras.main.shake(500, 0.05, false);
+        this.state = STATE.TRANSITIONING;
+        break;
+      case STATE.PLAYING:
+        break;
+    }
   }
 
   checkMatch(incomingTile: TileSprite, collectorTile: CollectorSprite): void {
@@ -63,8 +92,7 @@ export default class GameScene extends Phaser.Scene {
       this.registry.set('score', this.score); // Update registry so HUD will be updated
       incomingTile.destroy(true);
     } else {
-      // TODO: show game over screen
-      this.scene.restart({ difficulty: this.difficulty });
+      this.state = STATE.GAME_OVER;
     }
   }
 
