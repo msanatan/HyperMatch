@@ -43,7 +43,8 @@ export default class TitleScene extends Phaser.Scene {
   }
 
   playGame(): void {
-    this.scene.start('GameScene', { difficulty: DIFFICULTY.EASY, fadeIn: true });
+    this.registry.set('difficulty', DIFFICULTY.EASY);
+    this.scene.start('GameScene', { fadeIn: true });
     this.scene.start('HUDScene');
     this.scene.bringToTop('HUDScene');
   }
