@@ -47,5 +47,8 @@ export default class TitleScene extends Phaser.Scene {
     this.scene.start('GameScene', { fadeIn: true });
     this.scene.start('HUDScene');
     this.scene.bringToTop('HUDScene');
+    this.scene.start('PausedScene');
+    this.scene.bringToTop('PausedScene');
+    this.scene.sleep('PausedScene');
   }
 }
