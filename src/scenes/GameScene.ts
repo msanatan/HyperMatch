@@ -16,6 +16,8 @@ export default class GameScene extends Phaser.Scene {
   private collectorGroup: Phaser.GameObjects.Group;
   private descendingGroup: Phaser.GameObjects.Group;
   private tileGenerateEvent: Phaser.Time.TimerEvent;
+  private pauseButton: Phaser.GameObjects.Sprite;
+  private tilePointerHandler: Function;
   private score: number;
   private tileStartX: number;
   private tileStepX: number;
@@ -51,15 +53,17 @@ export default class GameScene extends Phaser.Scene {
     this.descendingGroup = this.add.group();
     this.addTiles();
 
-    this.input.setHitArea(this.tileGroup.getChildren()).
-      on('gameobjectdown', (pointer: PointerEvent, tileSprite: TileSprite) => {
-        // Find selected collected tile
-        this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
-          if (collectorSprite.selected) {
-            collectorSprite.updateColour(tileSprite.colour);
-          }
-        });
+    this.tilePointerHandler = (pointer: PointerEvent, tileSprite: TileSprite) => {
+      // Find selected collected tile
+      this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
+        if (collectorSprite.selected) {
+          collectorSprite.updateColour(tileSprite.colour);
+        }
       });
+    };
+
+    this.input.setHitArea(this.tileGroup.getChildren()).
+      on('gameobjectdown', this.tilePointerHandler);
 
     this.tileGenerateEvent = this.time.addEvent({
       delay: 2500,
@@ -72,13 +76,32 @@ export default class GameScene extends Phaser.Scene {
     // Check for collisions
     this.physics.add.overlap(this.descendingGroup, this.collectorGroup, this.checkMatch, null, this);
 
-    // Move to the game over scene after the shake effect
+    // Move to the game over scene after the shake and fade out effects
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.SHAKE_COMPLETE, () => {
       this.cameras.main.fadeOut(500, 0, 0, 0);
     });
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.stop('HUDScene');
       this.scene.start('GameOverScene');
+    });
+
+    // Add pause button
+    this.pauseButton = this.add.sprite(100, 125, 'btnPause');
+    this.pauseButton.setOrigin(0.5);
+    this.pauseButton.setScale(0.4, 0.4);
+    this.pauseButton.setInteractive();
+    this.pauseButton.on('pointerdown', () => {
+      this.input.off('gameobjectdown', this.tilePointerHandler);
+      this.pauseButton.setVisible(false);
+      this.scene.pause();
+      this.scene.run('PausedScene');
+    });
+
+    // Re-add tile pointer handler when scene is resumed
+    this.events.on('resume', () => {
+      this.input.setHitArea(this.tileGroup.getChildren()).
+        on('gameobjectdown', this.tilePointerHandler);
+        this.pauseButton.setVisible(true);
     });
   }
 
