@@ -22,7 +22,7 @@ export default class GameOverScene extends Phaser.Scene {
       fontSize: '144px',
       color: '#FFFFFF',
     };
-    const gameOverText = this.add.text(screenCenterX, screenCenterY - 500, 'GAME OVER', gameOverTextConfig);
+    const gameOverText = this.add.text(screenCenterX, screenCenterY - 600, 'GAME OVER', gameOverTextConfig);
     gameOverText.setOrigin(0.5);
 
     // Score text
@@ -40,31 +40,31 @@ export default class GameOverScene extends Phaser.Scene {
       color: '#FFFFFF',
     };
 
-    // Exit Button
-    const btnExit = this.add.sprite(screenCenterX - 200, screenCenterY + 100, 'btnExit');
-    btnExit.setOrigin(0.5);
-    btnExit.setScale(0.4, 0.4);
-    const exitText = this.add.text(screenCenterX - 25, screenCenterY + 100, 'Exit', btnTextConfig);
-    exitText.setOrigin(0.5);
-
     // Retry button
-    const btnRetry = this.add.sprite(screenCenterX - 200, screenCenterY + 275, 'btnRetry');
+    const btnRetry = this.add.sprite(screenCenterX - 200, screenCenterY + 100, 'btnRetry');
     btnRetry.setOrigin(0.5);
     btnRetry.setScale(0.4, 0.4);
-    const retryText = this.add.text(screenCenterX + 15, screenCenterY + 275, 'Retry', btnTextConfig);
+    const retryText = this.add.text(screenCenterX + 15, screenCenterY + 100, 'Retry', btnTextConfig);
     retryText.setOrigin(0.5);
 
-    // Button actions
-    btnExit.setInteractive();
-    btnExit.on('pointerdown', () => {
-      this.cameras.main.fadeOut(250, 0, 0, 0);
-      state = STATE.EXIT;
-    });
+    // Exit Button
+    const btnExit = this.add.sprite(screenCenterX - 200, screenCenterY + 275, 'btnExit');
+    btnExit.setOrigin(0.5);
+    btnExit.setScale(0.4, 0.4);
+    const exitText = this.add.text(screenCenterX - 25, screenCenterY + 275, 'Exit', btnTextConfig);
+    exitText.setOrigin(0.5);
 
+    // Button actions
     btnRetry.setInteractive();
     btnRetry.on('pointerdown', () => {
       this.cameras.main.fadeOut(250, 0, 0, 0);
       state = STATE.RETRY;
+    });
+
+    btnExit.setInteractive();
+    btnExit.on('pointerdown', () => {
+      this.cameras.main.fadeOut(250, 0, 0, 0);
+      state = STATE.EXIT;
     });
 
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
