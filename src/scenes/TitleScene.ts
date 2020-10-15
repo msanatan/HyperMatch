@@ -1,5 +1,6 @@
 import 'phaser';
 import { DIFFICULTY, titleTextConfig, btnTextConfig } from '../constants';
+import MenuItem from '../entities/MenuItem';
 
 export default class TitleScene extends Phaser.Scene {
   constructor() {
@@ -13,20 +14,18 @@ export default class TitleScene extends Phaser.Scene {
     titleText.setOrigin(0.5);
 
     // Play button
-    const playButton = this.add.text(screenCenterX, screenCenterY, 'Play', btnTextConfig);
-    playButton.setInteractive();
-    playButton.setOrigin(0.5);
-    playButton.on('pointerdown', () => {
+    const btnPlay = new MenuItem(this, screenCenterX, screenCenterY, 'Play', btnTextConfig);
+    btnPlay.on('pointerdown', () => {
       this.cameras.main.fadeOut(500, 0, 0, 0); // Fade to black screen
     });
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.playGame();
     });
-    playButton.on('pointerover', () => {
-      playButton.setFontSize(120);
+    btnPlay.on('pointerover', () => {
+      btnPlay.setFontSize(120);
     });
-    playButton.on('pointerout', () => {
-      playButton.setFontSize(96);
+    btnPlay.on('pointerout', () => {
+      btnPlay.setFontSize(96);
     });
   }
 

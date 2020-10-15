@@ -1,5 +1,6 @@
 import 'phaser';
 import { titleTextConfig, btnTextConfig } from '../constants';
+import MenuItem from '../entities/MenuItem';
 
 export default class PausedScene extends Phaser.Scene {
 
@@ -28,15 +29,13 @@ export default class PausedScene extends Phaser.Scene {
     const btnResume = this.add.sprite(screenCenterX - 200, screenCenterY - 300, 'btnResume');
     btnResume.setOrigin(0.5);
     btnResume.setScale(0.4, 0.4);
-    const retryText = this.add.text(screenCenterX + 80, screenCenterY - 300, 'Resume', btnTextConfig);
-    retryText.setOrigin(0.5);
+    const retryText = new MenuItem(this, screenCenterX + 80, screenCenterY - 300, 'Resume', btnTextConfig);
 
     // Exit button
     const btnExit = this.add.sprite(screenCenterX - 200, screenCenterY - 125, 'btnExit');
     btnExit.setOrigin(0.5);
     btnExit.setScale(0.4, 0.4);
-    const exitText = this.add.text(screenCenterX - 25, screenCenterY - 125, 'Exit', btnTextConfig);
-    exitText.setOrigin(0.5);
+    const exitText = new MenuItem(this, screenCenterX - 25, screenCenterY - 125, 'Exit', btnTextConfig);
 
     // Button input handlers
     btnResume.setInteractive();
