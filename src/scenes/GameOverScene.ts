@@ -1,4 +1,5 @@
 import 'phaser';
+import { titleTextConfig, subtitleTextConfig, btnTextConfig } from '../constants';
 
 enum STATE {
   EXIT,
@@ -17,28 +18,12 @@ export default class GameOverScene extends Phaser.Scene {
     const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
 
     // Game over text
-    const gameOverTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '144px',
-      color: '#FFFFFF',
-    };
-    const gameOverText = this.add.text(screenCenterX, screenCenterY - 600, 'GAME OVER', gameOverTextConfig);
+    const gameOverText = this.add.text(screenCenterX, screenCenterY - 600, 'GAME OVER', titleTextConfig);
     gameOverText.setOrigin(0.5);
 
     // Score text
-    const scoreTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '108px',
-      color: '#FFFFFF',
-    };
-    const scoreText = this.add.text(screenCenterX, screenCenterY - 300, `Score: ${this.registry.get('score')}`, scoreTextConfig);
+    const scoreText = this.add.text(screenCenterX, screenCenterY - 300, `Score: ${this.registry.get('score')}`, subtitleTextConfig);
     scoreText.setOrigin(0.5);
-
-    const btnTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '96px',
-      color: '#FFFFFF',
-    };
 
     // Retry button
     const btnRetry = this.add.sprite(screenCenterX - 200, screenCenterY + 100, 'btnRetry');

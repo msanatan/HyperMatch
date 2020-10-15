@@ -1,4 +1,5 @@
 import 'phaser';
+import { titleTextConfig, btnTextConfig } from '../constants';
 
 export default class PausedScene extends Phaser.Scene {
 
@@ -18,23 +19,10 @@ export default class PausedScene extends Phaser.Scene {
     graphics.fillStyle(0x000000, 0.3);
 
     // Paused text
-    const pauseTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '144px',
-      color: '#FFFFFF',
-    };
-
     const screenCenterX = this.cameras.main.worldView.x + this.cameras.main.width / 2;
     const screenCenterY = this.cameras.main.worldView.y + this.cameras.main.height / 2;
-    const pauseText = this.add.text(screenCenterX, screenCenterY - 600, 'PAUSED', pauseTextConfig);
+    const pauseText = this.add.text(screenCenterX, screenCenterY - 600, 'PAUSED', titleTextConfig);
     pauseText.setOrigin(0.5);
-
-    // Paused buttons
-    const btnTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '96px',
-      color: '#FFFFFF',
-    };
 
     // Resume Button
     const btnResume = this.add.sprite(screenCenterX - 200, screenCenterY - 300, 'btnResume');

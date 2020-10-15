@@ -1,4 +1,5 @@
 import 'phaser';
+import { hudTextConfig } from '../constants';
 
 export default class HUDScene extends Phaser.Scene {
   private scoreText: Phaser.GameObjects.Text;
@@ -8,12 +9,6 @@ export default class HUDScene extends Phaser.Scene {
   }
 
   create(): void {
-    const hudTextConfig = {
-      fontFamily: 'Gugi Regular, Helvetica, Arial',
-      fontSize: '65px',
-      color: '#FFFFFF',
-    };
-
     this.scoreText = this.add.text(724, 64, 'Score: 0', hudTextConfig);
     this.scoreText.setOrigin(0, 0);
 

@@ -25,3 +25,28 @@ export const tileTextureColours: TextureColourMap[] = [
   { name: 'brown', tile: 'brownTile', collector: 'collectorBrownTile', ball: 'brownBall' },
   { name: 'black', collector: 'collectorBlackTile' }
 ];
+
+// Text configurations
+export const titleTextConfig = {
+  fontFamily: 'Gugi Regular, Helvetica, Arial',
+  fontSize: '144px',
+  color: '#FFFFFF',
+};
+
+export const subtitleTextConfig = {
+  fontFamily: 'Gugi Regular, Helvetica, Arial',
+  fontSize: '108px',
+  color: '#FFFFFF',
+};
+
+export const btnTextConfig = {
+  fontFamily: 'Gugi Regular, Helvetica, Arial',
+  fontSize: '96px',
+  color: '#FFFFFF',
+};
+
+export const hudTextConfig = {
+  fontFamily: 'Gugi Regular, Helvetica, Arial',
+  fontSize: '65px',
+  color: '#FFFFFF',
+};
