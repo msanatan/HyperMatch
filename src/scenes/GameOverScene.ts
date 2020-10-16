@@ -22,21 +22,21 @@ export default class GameOverScene extends Phaser.Scene {
     gameOverText.setOrigin(0.5);
 
     // Score text
-    const scoreText = this.add.text(screenCenterX, screenCenterY - 300, `Score: ${this.registry.get('score')}`, subtitleTextConfig);
+    const scoreText = this.add.text(screenCenterX, screenCenterY - 350, `Score: ${this.registry.get('score')}`, subtitleTextConfig);
     scoreText.setOrigin(0.5);
 
     // Retry button
-    const btnRetry = this.add.sprite(screenCenterX - 200, screenCenterY + 100, 'btnRetry');
+    const btnRetry = this.add.sprite(screenCenterX - 200, scoreText.y + 300, 'btnRetry');
     btnRetry.setOrigin(0.5);
     btnRetry.setScale(0.4, 0.4);
-    const retryText = this.add.text(screenCenterX + 15, screenCenterY + 100, 'Retry', btnTextConfig);
+    const retryText = this.add.text(screenCenterX + 15, scoreText.y + 300, 'Retry', btnTextConfig);
     retryText.setOrigin(0.5);
 
     // Exit Button
-    const btnExit = this.add.sprite(screenCenterX - 200, screenCenterY + 275, 'btnExit');
+    const btnExit = this.add.sprite(screenCenterX - 200, retryText.y + 150, 'btnExit');
     btnExit.setOrigin(0.5);
     btnExit.setScale(0.4, 0.4);
-    const exitText = this.add.text(screenCenterX - 25, screenCenterY + 275, 'Exit', btnTextConfig);
+    const exitText = this.add.text(screenCenterX - 25, retryText.y + 150, 'Exit', btnTextConfig);
     exitText.setOrigin(0.5);
 
     // Button actions
