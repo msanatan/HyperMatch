@@ -1,3 +1,5 @@
+import MenuItem from "./entities/MenuItem";
+
 export enum DIFFICULTY {
   EASY,
   MEDIUM,
@@ -50,3 +52,11 @@ export const hudTextConfig = {
   fontSize: '64px',
   color: '#FFFFFF',
 };
+
+// Is a function that returns a function to alter a game object's font size
+export const changeFontSize: Function = (newSize: number): Function => {
+  return (pointer: PointerEvent, btnMenu: MenuItem) => {
+    console.log(btnMenu);
+    btnMenu.setFontSize(newSize);
+  };
+}
