@@ -35,18 +35,18 @@ export const titleTextConfig = {
 
 export const subtitleTextConfig = {
   fontFamily: 'Gugi Regular, Helvetica, Arial',
-  fontSize: '108px',
+  fontSize: '104px',
   color: '#FFFFFF',
 };
 
 export const btnTextConfig = {
   fontFamily: 'Gugi Regular, Helvetica, Arial',
-  fontSize: '96px',
+  fontSize: '80px',
   color: '#FFFFFF',
 };
 
 export const hudTextConfig = {
   fontFamily: 'Gugi Regular, Helvetica, Arial',
-  fontSize: '65px',
+  fontSize: '64px',
   color: '#FFFFFF',
 };
