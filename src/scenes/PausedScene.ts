@@ -26,16 +26,16 @@ export default class PausedScene extends Phaser.Scene {
     pauseText.setOrigin(0.5);
 
     // Resume Button
-    const btnResume = this.add.sprite(screenCenterX - 200, screenCenterY - 300, 'btnResume');
+    const btnResume = this.add.sprite(screenCenterX - 200, screenCenterY - 350, 'btnResume');
     btnResume.setOrigin(0.5);
     btnResume.setScale(0.4, 0.4);
-    const retryText = new MenuItem(this, screenCenterX + 80, screenCenterY - 300, 'Resume', btnTextConfig);
+    const retryText = new MenuItem(this, btnResume.x + 240, screenCenterY - 350, 'Resume', btnTextConfig);
 
     // Exit button
-    const btnExit = this.add.sprite(screenCenterX - 200, screenCenterY - 125, 'btnExit');
+    const btnExit = this.add.sprite(screenCenterX - 200, btnResume.y + 150, 'btnExit');
     btnExit.setOrigin(0.5);
     btnExit.setScale(0.4, 0.4);
-    const exitText = new MenuItem(this, screenCenterX - 25, screenCenterY - 125, 'Exit', btnTextConfig);
+    const exitText = new MenuItem(this, btnExit.x + 150, btnResume.y + 150, 'Exit', btnTextConfig);
 
     // Button input handlers
     btnResume.setInteractive();
