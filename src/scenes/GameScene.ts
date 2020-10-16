@@ -1,5 +1,5 @@
 import 'phaser';
-import { DIFFICULTY, tileTextureColours, BALL_RADIUS } from '../constants';
+import { DIFFICULTY, tileTextureColours, BALL_RADIUS, TextureColourMap } from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
 
@@ -66,8 +66,8 @@ export default class GameScene extends Phaser.Scene {
       on('gameobjectdown', this.tilePointerHandler);
 
     this.tileGenerateEvent = this.time.addEvent({
-      delay: 2500,
-      startAt: 2000,
+      delay: 2000,
+      startAt: 1500,
       callback: this.addBall,
       callbackScope: this,
       loop: true,
@@ -101,7 +101,7 @@ export default class GameScene extends Phaser.Scene {
     this.events.on('resume', () => {
       this.input.setHitArea(this.tileGroup.getChildren()).
         on('gameobjectdown', this.tilePointerHandler);
-        this.pauseButton.setVisible(true);
+      this.pauseButton.setVisible(true);
     });
   }
 
@@ -149,22 +149,58 @@ export default class GameScene extends Phaser.Scene {
           this.tileStartX + this.tileStepX,
           this.tileStartY - this.tileStepY, true));
         break;
+      case DIFFICULTY.MEDIUM:
+        // Add player tiles to scene
+        this.tileStartY -= 325;
+        for (let i = 0; i < 9; i++) {
+          let row = Math.floor(i / 3);
+          let col = i >= 3 ? i % 3 : i;
+          const colour = tileTextureColours[i];
+          this.tileGroup.add(new TileSprite(
+            this,
+            this.tileStartX + (col * this.tileStepX),
+            this.tileStartY + (row * this.tileStepY),
+            colour.tile,
+            colour)
+          );
+        }
+
+        // Add collector tile
+        this.collectorGroup.add(new CollectorSprite(
+          this,
+          this.tileStartX + this.tileStepX,
+          this.tileStartY - this.tileStepY, true));
+        break;
     }
   }
 
   addBall(): void {
+    let newTile: TileSprite;
+    let colour: TextureColourMap;
     switch (this.difficulty) {
       case DIFFICULTY.EASY:
-        const colour = tileTextureColours[Phaser.Math.Between(0, 5)];
+        colour = tileTextureColours[Phaser.Math.Between(0, 5)];
         // Add player tiles to scene
-        const newTile = new TileSprite(
+        newTile = new TileSprite(
           this,
           this.tileStartX + this.tileStepX + BALL_RADIUS,
           -150,
           colour.ball,
           colour
         );
-        newTile.setVelocityY(Phaser.Math.Between(200, 220));
+        newTile.setVelocityY(Phaser.Math.Between(250, 275));
+        this.descendingGroup.add(newTile);
+        break;
+      case DIFFICULTY.MEDIUM:
+        colour = tileTextureColours[Phaser.Math.Between(0, tileTextureColours.length - 2)];
+        newTile = new TileSprite(
+          this,
+          this.tileStartX + this.tileStepX + BALL_RADIUS,
+          -150,
+          colour.ball,
+          colour
+        );
+        newTile.setVelocityY(Phaser.Math.Between(250, 275));
         this.descendingGroup.add(newTile);
         break;
     }
