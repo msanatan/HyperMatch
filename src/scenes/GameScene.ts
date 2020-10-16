@@ -66,8 +66,8 @@ export default class GameScene extends Phaser.Scene {
       on('gameobjectdown', this.tilePointerHandler);
 
     this.tileGenerateEvent = this.time.addEvent({
-      delay: 2000,
-      startAt: 1500,
+      delay: 1750,
+      startAt: 1250,
       callback: this.addBall,
       callbackScope: this,
       loop: true,
