@@ -160,6 +160,11 @@
         "type": "image",
         "key": "btnResume",
         "url": "./images/btn-resume.png"
+      },
+      {
+        "type": "image",
+        "key": "btnBack",
+        "url": "./images/btn-back.png"
       }
     ]
   }
