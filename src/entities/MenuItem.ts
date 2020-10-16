@@ -1,7 +1,7 @@
 import 'phaser';
 
 export default class MenuItem extends Phaser.GameObjects.Text {
-  private selected: boolean;
+  public selected: boolean;
 
   constructor(scene: Phaser.Scene, x: number, y: number, text: string, style: Phaser.Types.GameObjects.Text.TextStyle, selected: boolean = false) {
     super(scene, x, y, text, style);
