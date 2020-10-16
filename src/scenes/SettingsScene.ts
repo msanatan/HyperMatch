@@ -1,5 +1,5 @@
 import 'phaser';
-import { titleTextConfig, subtitleTextConfig, btnTextConfig, DIFFICULTY } from '../constants';
+import { titleTextConfig, subtitleTextConfig, btnTextConfig, DIFFICULTY, changeFontSize } from '../constants';
 import MenuItem from '../entities/MenuItem';
 
 export default class SettingsScene extends Phaser.Scene {
@@ -54,21 +54,12 @@ export default class SettingsScene extends Phaser.Scene {
       }
     };
 
-    this.input.setHitArea(difficultyButtons.getChildren()).
-      on('gameobjectdown', this.selectDifficulty);
-
     // Make button text larger when hovering
-    this.increaseFont = (pointer: PointerEvent, difficultyBtn: MenuItem) => {
-      difficultyBtn.setFontSize(120);
-    };
-    this.decreaseFont = (pointer: PointerEvent, difficultyBtn: MenuItem) => {
-      difficultyBtn.setFontSize(96);
-    };
-
+    this.increaseFont = changeFontSize(120);
+    this.decreaseFont = changeFontSize(96);
     this.input.setHitArea(difficultyButtons.getChildren()).
-      on('gameobjectover', this.increaseFont);
-
-    this.input.setHitArea(difficultyButtons.getChildren()).
+      on('gameobjectdown', this.selectDifficulty).
+      on('gameobjectover', this.increaseFont).
       on('gameobjectout', this.decreaseFont);
 
     // Back button
@@ -80,9 +71,9 @@ export default class SettingsScene extends Phaser.Scene {
     // Button input handlers
     btnBack.setInteractive();
     btnBack.on('pointerdown', () => {
+      this.input.off('gameobjectdown', this.selectDifficulty);
       this.input.off('gameobjectover', this.increaseFont);
       this.input.off('gameobjectout', this.decreaseFont);
-      this.input.off('gameobjectdown', this.selectDifficulty);
       this.scene.start('TitleScene');
     });
   }
