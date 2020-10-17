@@ -6,7 +6,8 @@ export enum DIFFICULTY {
   HARD
 }
 
-export const BALL_RADIUS: number = 65;
+// The ball is 150px but it's scaled by 0.8 so 120. Half of that is the actual radius
+export const BALL_RADIUS: number = 60;
 
 export interface TextureColourMap {
   name: string;
@@ -56,7 +57,6 @@ export const hudTextConfig = {
 // Is a function that returns a function to alter a game object's font size
 export const changeFontSize: Function = (newSize: number): Function => {
   return (pointer: PointerEvent, btnMenu: MenuItem) => {
-    console.log(btnMenu);
     btnMenu.setFontSize(newSize);
   };
 }
