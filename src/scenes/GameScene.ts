@@ -171,6 +171,35 @@ export default class GameScene extends Phaser.Scene {
           this.tileStartX + this.tileStepX,
           this.tileStartY - this.tileStepY, true));
         break;
+      case DIFFICULTY.HARD:
+        // Add player tiles to scene
+        this.tileStartY -= 325;
+        for (let i = 0; i < 9; i++) {
+          let row = Math.floor(i / 3);
+          let col = i >= 3 ? i % 3 : i;
+          const colour = tileTextureColours[i];
+          this.tileGroup.add(new TileSprite(
+            this,
+            this.tileStartX + (col * this.tileStepX),
+            this.tileStartY + (row * this.tileStepY),
+            colour.tile,
+            colour)
+          );
+        }
+
+        // Add collector tiles
+        this.collectorGroup.add(new CollectorSprite(
+          this,
+          this.tileStartX,
+          this.tileStartY - this.tileStepY, true)
+        );
+
+        this.collectorGroup.add(new CollectorSprite(
+          this,
+          this.tileStartX + (this.tileStepX * 2),
+          this.tileStartY - this.tileStepY)
+        );
+        break;
     }
   }
 
