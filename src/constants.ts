@@ -62,7 +62,9 @@ export const hudTextConfig = {
 
 // Is a function that returns a function to alter a game object's font size
 export const changeFontSize: Function = (newSize: number): Function => {
-  return (pointer: PointerEvent, btnMenu: MenuItem) => {
-    btnMenu.setFontSize(newSize);
+  return (pointer: PointerEvent, btnMenu: Phaser.GameObjects.GameObject) => {
+    if (btnMenu.constructor === MenuItem) {
+      (<MenuItem>btnMenu).setFontSize(newSize);
+    }
   };
 }

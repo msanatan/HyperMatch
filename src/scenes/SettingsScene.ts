@@ -31,6 +31,10 @@ export default class SettingsScene extends Phaser.Scene {
     // Button pointer listener
     const difficultyButtons = this.add.group([btnEasy, btnMedium, btnHard]);
     this.selectDifficulty = (pointer: PointerEvent, difficultyBtn: MenuItem) => {
+      if (difficultyBtn.text === 'Back') {
+        return;
+      }
+
       // Find selected collected tile
       difficultyButtons.getChildren().forEach((btn: MenuItem) => {
         if (btn.selected) {
@@ -57,7 +61,7 @@ export default class SettingsScene extends Phaser.Scene {
     // Make button text larger when hovering
     this.increaseFont = changeFontSize(120);
     this.decreaseFont = changeFontSize(96);
-    this.input.setHitArea(difficultyButtons.getChildren()).
+    this.input.
       on('gameobjectdown', this.selectDifficulty).
       on('gameobjectover', this.increaseFont).
       on('gameobjectout', this.decreaseFont);
