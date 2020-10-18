@@ -17,7 +17,7 @@ export default class GameScene extends Phaser.Scene {
   private descendingGroup: Phaser.GameObjects.Group;
   private tileGenerateEvent: Phaser.Time.TimerEvent;
   private pauseButton: Phaser.GameObjects.Sprite;
-  private tilePointerHandler: Function;
+  private tileInputHandler: Function;
   private score: number;
   private tileStartX: number;
   private tileStepX: number;
@@ -53,17 +53,33 @@ export default class GameScene extends Phaser.Scene {
     this.descendingGroup = this.add.group();
     this.addTiles();
 
-    this.tilePointerHandler = (pointer: PointerEvent, tileSprite: TileSprite) => {
-      // Find selected collected tile
-      this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
-        if (collectorSprite.selected) {
-          collectorSprite.updateColour(tileSprite.colour);
-        }
-      });
+    this.tileInputHandler = (pointer: PointerEvent, tileSprite: Phaser.GameObjects.GameObject) => {
+      switch (tileSprite.constructor) {
+        case CollectorSprite:
+          this.collectorGroup.getChildren().forEach((tile: CollectorSprite) => {
+            if (tile.selected) {
+              tile.selected = false;
+            }
+          });
+
+          (<CollectorSprite>tileSprite).selected = true;
+          break;
+        case TileSprite:
+          // Find selected collected tile
+          this.collectorGroup.getChildren().forEach((collectorSprite: CollectorSprite) => {
+            if (collectorSprite.selected) {
+              collectorSprite.updateColour((<TileSprite>tileSprite).colour);
+            }
+          });
+          break;
+        default:
+          console.debug('Ignore other item being hit')
+      }
     };
 
-    this.input.setHitArea(this.tileGroup.getChildren()).
-      on('gameobjectdown', this.tilePointerHandler);
+    this.input.on('gameobjectdown', this.tileInputHandler);
+    this.input.enableDebug(this.collectorGroup.getChildren()[0], 0xff00ff);
+    this.input.enableDebug(this.collectorGroup.getChildren()[1], 0xff00ff);
 
     this.tileGenerateEvent = this.time.addEvent({
       delay: 1750,
@@ -91,7 +107,7 @@ export default class GameScene extends Phaser.Scene {
     this.pauseButton.setScale(0.4, 0.4);
     this.pauseButton.setInteractive();
     this.pauseButton.on('pointerdown', () => {
-      this.input.off('gameobjectdown', this.tilePointerHandler);
+      this.input.off('gameobjectdown', this.tileInputHandler);
       this.pauseButton.setVisible(false);
       this.scene.pause();
       this.scene.run('PausedScene');
@@ -99,8 +115,7 @@ export default class GameScene extends Phaser.Scene {
 
     // Re-add tile pointer handler when scene is resumed
     this.events.on('resume', () => {
-      this.input.setHitArea(this.tileGroup.getChildren()).
-        on('gameobjectdown', this.tilePointerHandler);
+      this.input.on('gameobjectdown', this.tileInputHandler);
       this.pauseButton.setVisible(true);
     });
   }
