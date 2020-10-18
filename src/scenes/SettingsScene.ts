@@ -24,7 +24,7 @@ export default class SettingsScene extends Phaser.Scene {
     scoreText.setOrigin(0.5);
 
     // Buttons
-    const btnEasy = new MenuItem(this, screenCenterX, scoreText.y + 150, 'Easy', btnTextConfig);
+    const btnEasy = new MenuItem(this, screenCenterX, scoreText.y + 150, 'Easy', btnTextConfig, true);
     const btnMedium = new MenuItem(this, screenCenterX, btnEasy.y + 120, 'Medium', btnTextConfig);
     const btnHard = new MenuItem(this, screenCenterX, btnMedium.y + 120, 'Hard', btnTextConfig);
 
@@ -34,11 +34,11 @@ export default class SettingsScene extends Phaser.Scene {
       // Find selected collected tile
       difficultyButtons.getChildren().forEach((btn: MenuItem) => {
         if (btn.selected) {
-          btn.selected = false;
+          btn.unselect();
         }
       });
 
-      difficultyBtn.selected = true;
+      difficultyBtn.select();
       switch (difficultyBtn.text) {
         case 'Easy':
           this.registry.set('difficulty', DIFFICULTY.EASY);
