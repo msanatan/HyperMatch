@@ -6,8 +6,14 @@ export enum DIFFICULTY {
   HARD
 }
 
+export enum DIRECTION {
+  LEFT,
+  RIGHT
+}
+
 // The ball is 150px but it's scaled by 0.8 so 120. Half of that is the actual radius
 export const BALL_RADIUS: number = 60;
+export const TILE_WDITH: number = 120; // Same logic for tile width
 
 export interface TextureColourMap {
   name: string;
