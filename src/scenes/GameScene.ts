@@ -59,11 +59,11 @@ export default class GameScene extends Phaser.Scene {
         case CollectorSprite:
           this.collectorGroup.getChildren().forEach((tile: CollectorSprite) => {
             if (tile.selected) {
-              tile.selected = false;
+              tile.unselect();
             }
           });
 
-          (<CollectorSprite>tileSprite).selected = true;
+          (<CollectorSprite>tileSprite).select();
           break;
         case TileSprite:
           // Find selected collected tile
