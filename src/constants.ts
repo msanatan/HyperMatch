@@ -15,6 +15,15 @@ export enum DIRECTION {
 export const BALL_RADIUS: number = 60;
 export const TILE_WDITH: number = 120; // Same logic for tile width
 
+// Menu effects
+export const TITLE_CAMERA_CENTRE_DEST_X = 2160;
+export const SETTINGS_CAMERA_CENTRE_DEST_X = -2160;
+export const CAMERA_CENTRE_ORIG_X = 540;
+export const CAMERA_CENTRE_ORIG_Y = 960;
+export const CAMERA_PAN_DURATION = 250;
+export const CAMERA_FADE_DURATION = 500;
+export const CAMERA_SHAKE_DURATION = 500;
+
 export interface TextureColourMap {
   name: string;
   tile?: string;

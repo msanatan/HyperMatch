@@ -1,16 +1,26 @@
 import 'phaser';
-import { DIFFICULTY, titleTextConfig, changeFontSize, subtitleTextConfig } from '../constants';
+import {
+  DIFFICULTY, titleTextConfig, changeFontSize, subtitleTextConfig,
+  TITLE_CAMERA_CENTRE_DEST_X, CAMERA_CENTRE_ORIG_Y, CAMERA_CENTRE_ORIG_X,
+  CAMERA_PAN_DURATION, CAMERA_FADE_DURATION
+} from '../constants';
 import MenuItem from '../entities/MenuItem';
 
 export default class TitleScene extends Phaser.Scene {
   private increaseFont: Function;
   private decreaseFont: Function;
+  private goToSettings: boolean;
 
   constructor() {
     super({ key: 'TitleScene' });
   }
 
-  create() {
+  create(data: any): void {
+    if (data?.panIn) {
+      this.cameras.main.centerOnX(TITLE_CAMERA_CENTRE_DEST_X);
+      this.cameras.main.pan(CAMERA_CENTRE_ORIG_X, CAMERA_CENTRE_ORIG_Y, CAMERA_PAN_DURATION, 'Linear');
+    }
+
     // If no difficulty is set in the registry, default to easy
     if (!this.registry.get('difficulty')) {
       this.registry.set('difficulty', DIFFICULTY.EASY);
@@ -24,6 +34,7 @@ export default class TitleScene extends Phaser.Scene {
     // Play button
     const btnPlay = new MenuItem(this, screenCenterX, screenCenterY, 'Play', subtitleTextConfig);
     const btnSettings = new MenuItem(this, btnPlay.x, btnPlay.y + 150, 'Settings', subtitleTextConfig);
+    this.goToSettings = false; // Add flag for menu button
     const btnGroup = this.add.group([btnPlay, btnSettings]);
 
     // Make button text larger when hovering
@@ -35,9 +46,10 @@ export default class TitleScene extends Phaser.Scene {
 
     // Handle transition to play scene
     btnPlay.on('pointerdown', () => {
-      this.cameras.main.fadeOut(500, 0, 0, 0); // Fade to black screen
+      // Fade to black screen
+      this.cameras.main.fadeOut(CAMERA_FADE_DURATION, 0, 0, 0);
     });
-    this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
+    this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.input.off('gameobjectover', this.increaseFont);
       this.input.off('gameobjectout', this.decreaseFont);
       this.playGame();
@@ -45,9 +57,17 @@ export default class TitleScene extends Phaser.Scene {
 
     // Handle transition to settings scene
     btnSettings.on('pointerdown', () => {
-      this.input.off('gameobjectover', this.increaseFont);
-      this.input.off('gameobjectout', this.decreaseFont);
-      this.scene.start('SettingsScene');
+      // Move camera to the right, create a "swipe" feeling
+      this.goToSettings = true;
+      this.cameras.main.pan(TITLE_CAMERA_CENTRE_DEST_X, CAMERA_CENTRE_ORIG_Y, CAMERA_PAN_DURATION, 'Linear');
+    });
+
+    this.cameras.main.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
+      if (this.goToSettings) {
+        this.input.off('gameobjectover', this.increaseFont);
+        this.input.off('gameobjectout', this.decreaseFont);
+        this.scene.start('SettingsScene', { panIn: true });
+      }
     });
   }
 
