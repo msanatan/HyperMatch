@@ -55,7 +55,7 @@ export default class GameOverScene extends Phaser.Scene {
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       switch (state) {
         case STATE.EXIT:
-          this.scene.start('TitleScene');
+          this.scene.start('TitleScene', { panIn: false });
           break;
         case STATE.RETRY:
           this.scene.start('GameScene');
