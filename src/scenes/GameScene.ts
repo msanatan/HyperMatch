@@ -1,5 +1,8 @@
 import 'phaser';
-import { DIFFICULTY, tileTextureColours, BALL_RADIUS, TextureColourMap, DIRECTION, TILE_WDITH } from '../constants';
+import {
+  DIFFICULTY, tileTextureColours, BALL_RADIUS, TextureColourMap,
+  DIRECTION, TILE_WDITH, CAMERA_SHAKE_DURATION, CAMERA_FADE_DURATION
+} from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
 
@@ -29,8 +32,8 @@ export default class GameScene extends Phaser.Scene {
   }
 
   create(data: any): void {
-    if (data && data.fadeIn) {
-      this.cameras.main.fadeIn(500, 0, 0, 0);
+    if (data?.fadeIn) {
+      this.cameras.main.fadeIn(CAMERA_FADE_DURATION, 0, 0, 0);
     }
 
     // Remove text listener on HUD if it exists
@@ -85,7 +88,7 @@ export default class GameScene extends Phaser.Scene {
 
     // Move to the game over scene after the shake and fade out effects
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.SHAKE_COMPLETE, () => {
-      this.cameras.main.fadeOut(500, 0, 0, 0);
+      this.cameras.main.fadeOut(CAMERA_FADE_DURATION, 0, 0, 0);
     });
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.stop('HUDScene');
@@ -149,7 +152,7 @@ export default class GameScene extends Phaser.Scene {
   update(): void {
     switch (this.state) {
       case STATE.GAME_OVER:
-        this.cameras.main.shake(500, 0.05, false);
+        this.cameras.main.shake(CAMERA_SHAKE_DURATION, 0.05, false);
         this.state = STATE.TRANSITIONING;
         break;
       case STATE.PLAYING:
