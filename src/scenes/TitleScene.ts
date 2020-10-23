@@ -69,6 +69,21 @@ export default class TitleScene extends Phaser.Scene {
         this.scene.start('SettingsScene', { panIn: true });
       }
     });
+
+    // Add fullscreen button if mobile
+    if (!this.sys.game.device.os.desktop) {
+      const btnFullscreen = this.add.sprite(this.cameras.main.width - 100, 100, 'btnFullscreen');
+      btnFullscreen.setInteractive();
+      btnFullscreen.setOrigin(0.5);
+      btnFullscreen.setScale(0.3, 0.3);
+      btnFullscreen.on('pointerup', () => {
+        if (this.scale.isFullscreen) {
+          this.scale.stopFullscreen();
+        } else {
+          this.scale.startFullscreen();
+        }
+      });
+    }
   }
 
   playGame(): void {
