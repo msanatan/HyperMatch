@@ -47,7 +47,7 @@ export default class PausedScene extends Phaser.Scene {
     this.cameras.main.once(Phaser.Cameras.Scene2D.Events.FADE_OUT_COMPLETE, () => {
       this.scene.stop('GameScene');
       this.scene.stop('HUDScene');
-      this.scene.start('TitleScene');
+      this.scene.start('TitleScene', { panIn: false });
     });
   }
 }
