@@ -1,6 +1,7 @@
 import 'phaser';
 import { titleTextConfig, btnTextConfig } from '../constants';
 import MenuItem from '../entities/MenuItem';
+import MenuItemButton from '../entities/MenuItemButton';
 
 export default class PausedScene extends Phaser.Scene {
 
@@ -26,25 +27,19 @@ export default class PausedScene extends Phaser.Scene {
     pauseText.setOrigin(0.5);
 
     // Resume Button
-    const btnResume = this.add.sprite(screenCenterX - 200, screenCenterY - 350, 'btnResume');
-    btnResume.setOrigin(0.5);
-    btnResume.setScale(0.4, 0.4);
+    const btnResume = new MenuItemButton(this, screenCenterX - 200, screenCenterY - 350, 'btnResume', 0.4);
     const retryText = new MenuItem(this, btnResume.x + 240, screenCenterY - 350, 'Resume', btnTextConfig);
 
     // Exit button
-    const btnExit = this.add.sprite(screenCenterX - 200, btnResume.y + 150, 'btnExit');
-    btnExit.setOrigin(0.5);
-    btnExit.setScale(0.4, 0.4);
+    const btnExit = new MenuItemButton(this, screenCenterX - 200, btnResume.y + 150, 'btnExit', 0.4);
     const exitText = new MenuItem(this, btnExit.x + 150, btnResume.y + 150, 'Exit', btnTextConfig);
 
     // Button input handlers
-    btnResume.setInteractive();
     btnResume.on('pointerdown', () => {
       this.scene.sleep();
       this.scene.resume('GameScene');
     });
 
-    btnExit.setInteractive();
     btnExit.on('pointerdown', () => {
       this.cameras.main.fadeOut(250, 0, 0, 0);
     });

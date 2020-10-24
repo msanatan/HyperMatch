@@ -5,6 +5,7 @@ import {
 } from '../constants';
 import TileSprite from '../entities/TileSprite';
 import CollectorSprite from '../entities/CollectorSprite';
+import MenuItemButton from '../entities/MenuItemButton';
 
 enum STATE {
   PLAYING,
@@ -96,10 +97,8 @@ export default class GameScene extends Phaser.Scene {
     });
 
     // Add pause button
-    this.pauseButton = this.add.sprite(100, 125, 'btnPause');
-    this.pauseButton.setOrigin(0.5);
-    this.pauseButton.setScale(0.4, 0.4);
-    this.pauseButton.setInteractive();
+
+    this.pauseButton = new MenuItemButton(this, 100, 125, 'btnPause', 0.4);
     this.pauseButton.on('pointerdown', () => {
       this.input.off('gameobjectdown', this.tileInputHandler);
       this.pauseButton.setVisible(false);

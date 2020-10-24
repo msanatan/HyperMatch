@@ -1,5 +1,6 @@
 import 'phaser';
 import { titleTextConfig, subtitleTextConfig, btnTextConfig } from '../constants';
+import MenuItemButton from '../entities/MenuItemButton';
 
 enum STATE {
   EXIT,
@@ -26,27 +27,21 @@ export default class GameOverScene extends Phaser.Scene {
     scoreText.setOrigin(0.5);
 
     // Retry button
-    const btnRetry = this.add.sprite(screenCenterX - 200, scoreText.y + 300, 'btnRetry');
-    btnRetry.setOrigin(0.5);
-    btnRetry.setScale(0.4, 0.4);
+    const btnRetry = new MenuItemButton(this, screenCenterX - 200, scoreText.y + 300, 'btnRetry', 0.4);
     const retryText = this.add.text(screenCenterX + 15, scoreText.y + 300, 'Retry', btnTextConfig);
     retryText.setOrigin(0.5);
 
     // Exit Button
-    const btnExit = this.add.sprite(screenCenterX - 200, retryText.y + 150, 'btnExit');
-    btnExit.setOrigin(0.5);
-    btnExit.setScale(0.4, 0.4);
+    const btnExit = new MenuItemButton(this, screenCenterX - 200, retryText.y + 150, 'btnExit', 0.4);
     const exitText = this.add.text(screenCenterX - 25, retryText.y + 150, 'Exit', btnTextConfig);
     exitText.setOrigin(0.5);
 
     // Button actions
-    btnRetry.setInteractive();
     btnRetry.on('pointerdown', () => {
       this.cameras.main.fadeOut(250, 0, 0, 0);
       state = STATE.RETRY;
     });
 
-    btnExit.setInteractive();
     btnExit.on('pointerdown', () => {
       this.cameras.main.fadeOut(250, 0, 0, 0);
       state = STATE.EXIT;

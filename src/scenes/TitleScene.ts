@@ -5,6 +5,7 @@ import {
   CAMERA_PAN_DURATION, CAMERA_FADE_DURATION
 } from '../constants';
 import MenuItem from '../entities/MenuItem';
+import MenuItemButton from '../entities/MenuItemButton';
 
 export default class TitleScene extends Phaser.Scene {
   private increaseFont: Function;
@@ -72,10 +73,7 @@ export default class TitleScene extends Phaser.Scene {
 
     // Add fullscreen button if mobile
     if (!this.sys.game.device.os.desktop) {
-      const btnFullscreen = this.add.sprite(this.cameras.main.width - 100, 100, 'btnFullscreen');
-      btnFullscreen.setInteractive();
-      btnFullscreen.setOrigin(0.5);
-      btnFullscreen.setScale(0.3, 0.3);
+      const btnFullscreen = new MenuItemButton(this, this.cameras.main.width - 100, 100, 'btnFullscreen', 0.3);
       btnFullscreen.on('pointerup', () => {
         if (this.scale.isFullscreen) {
           this.scale.stopFullscreen();

@@ -5,6 +5,7 @@ import {
   SETTINGS_CAMERA_CENTRE_DEST_X, CAMERA_PAN_DURATION
 } from '../constants';
 import MenuItem from '../entities/MenuItem';
+import MenuItemButton from '../entities/MenuItemButton';
 
 export default class SettingsScene extends Phaser.Scene {
   private selectDifficulty: Function;
@@ -81,14 +82,11 @@ export default class SettingsScene extends Phaser.Scene {
       on('gameobjectout', this.decreaseFont);
 
     // Back button
-    const btnBack = this.add.sprite(screenCenterX - 200, btnHard.y + 550, 'btnBack');
-    btnBack.setOrigin(0.5);
-    btnBack.setScale(0.4, 0.4);
+    const btnBack = new MenuItemButton(this, screenCenterX - 200, btnHard.y + 550, 'btnBack', 0.4);
     const backText = new MenuItem(this, btnBack.x + 200, btnHard.y + 550, 'Back', btnTextConfig);
     this.goToTitle = false;
 
     // Button input handlers
-    btnBack.setInteractive();
     btnBack.on('pointerdown', () => {
       this.goToTitle = true;
       // Move camera to the left, create a "swipe" feeling
