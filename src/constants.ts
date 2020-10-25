@@ -6,9 +6,10 @@ export enum DIFFICULTY {
   HARD
 }
 
-export enum DIRECTION {
+export enum LANE {
   LEFT,
-  RIGHT
+  RIGHT,
+  CENTRE
 }
 
 // The ball is 150px but it's scaled by 0.8 so 120. Half of that is the actual radius
