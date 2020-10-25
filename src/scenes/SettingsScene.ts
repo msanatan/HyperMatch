@@ -92,6 +92,11 @@ export default class SettingsScene extends Phaser.Scene {
       // Move camera to the left, create a "swipe" feeling
       this.cameras.main.pan(SETTINGS_CAMERA_CENTRE_DEST_X, CAMERA_CENTRE_ORIG_Y, CAMERA_PAN_DURATION, 'Linear');
     });
+    backText.on('pointerdown', () => {
+      this.goToTitle = true;
+      // Move camera to the left, create a "swipe" feeling
+      this.cameras.main.pan(SETTINGS_CAMERA_CENTRE_DEST_X, CAMERA_CENTRE_ORIG_Y, CAMERA_PAN_DURATION, 'Linear');
+    });
 
     this.cameras.main.on(Phaser.Cameras.Scene2D.Events.PAN_COMPLETE, () => {
       if (this.goToTitle) {

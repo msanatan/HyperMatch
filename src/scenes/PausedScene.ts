@@ -39,8 +39,15 @@ export default class PausedScene extends Phaser.Scene {
       this.scene.sleep();
       this.scene.resume('GameScene');
     });
+    retryText.on('pointerdown', () => {
+      this.scene.sleep();
+      this.scene.resume('GameScene');
+    });
 
     btnExit.on('pointerdown', () => {
+      this.cameras.main.fadeOut(250, 0, 0, 0);
+    });
+    exitText.on('pointerdown', () => {
       this.cameras.main.fadeOut(250, 0, 0, 0);
     });
 
