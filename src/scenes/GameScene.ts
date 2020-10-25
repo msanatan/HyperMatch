@@ -115,8 +115,8 @@ export default class GameScene extends Phaser.Scene {
     // Add two timers to drop balls
     this.dropBallEvents.push(
       this.time.addEvent({
-        delay: 3000,
-        startAt: 2000,
+        delay: 2500,
+        startAt: 1500,
         callback: this.addBall,
         args: [LANE.LEFT],
         callbackScope: this,
@@ -126,7 +126,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.dropBallEvents.push(
       this.time.addEvent({
-        delay: 3000,
+        delay: 2500,
         callback: this.addBall,
         args: [LANE.RIGHT],
         callbackScope: this,
@@ -138,8 +138,8 @@ export default class GameScene extends Phaser.Scene {
     if (this.difficulty === DIFFICULTY.HARD) {
       this.dropBallEvents.push(
         this.time.addEvent({
-          delay: 3000,
-          startAt: 1000,
+          delay: 2500,
+          startAt: 500,
           callback: this.addBall,
           args: [LANE.CENTRE],
           callbackScope: this,
@@ -165,6 +165,7 @@ export default class GameScene extends Phaser.Scene {
       this.score++;
       this.registry.set('score', this.score); // Update registry so HUD will be updated
       incomingTile.destroy(true);
+      this.sound.play('sfxPop');
     } else {
       this.state = STATE.GAME_OVER;
     }
