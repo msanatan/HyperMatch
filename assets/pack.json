@@ -170,6 +170,11 @@
         "type": "image",
         "key": "btnFullscreen",
         "url": "./images/btn-fullscreen.png"
+      },
+      {
+        "type": "audio",
+        "key": "sfxPop",
+        "url": "./audio/pop.mp3"
       }
     ]
   }
