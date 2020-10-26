@@ -166,8 +166,9 @@ export default class GameScene extends Phaser.Scene {
       this.registry.set('score', this.score); // Update registry so HUD will be updated
       incomingTile.destroy(true);
       this.sound.play('sfxPop');
-    } else {
+    } else if (incomingTile.colour !== collectorTile.colour && this.state === STATE.PLAYING) {
       this.state = STATE.GAME_OVER;
+      this.sound.play('sfxLose');
     }
   }
 
