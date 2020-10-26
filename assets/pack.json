@@ -175,6 +175,11 @@
         "type": "audio",
         "key": "sfxPop",
         "url": "./audio/pop.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "sfxLose",
+        "url": "./audio/lose.mp3"
       }
     ]
   }
