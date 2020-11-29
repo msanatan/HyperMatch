@@ -35,9 +35,19 @@ export default class SettingsScene extends Phaser.Scene {
     scoreText.setOrigin(0.5);
 
     // Buttons
-    const btnEasy = new MenuItem(this, screenCenterX, scoreText.y + 150, 'Easy', btnTextConfig, true);
+    const btnEasy = new MenuItem(this, screenCenterX, scoreText.y + 150, 'Easy', btnTextConfig);
     const btnMedium = new MenuItem(this, screenCenterX, btnEasy.y + 120, 'Medium', btnTextConfig);
     const btnHard = new MenuItem(this, screenCenterX, btnMedium.y + 120, 'Hard', btnTextConfig);
+
+    // Highlight a button based on the current difficulty level
+    const difficulty = this.registry.get('difficulty');
+    if (!difficulty || difficulty === DIFFICULTY.EASY) {
+      btnEasy.select();
+    } else if (difficulty === DIFFICULTY.MEDIUM) {
+      btnMedium.select();
+    } else {
+      btnHard.select();
+    }
 
     // Button pointer listener
     const difficultyButtons = this.add.group([btnEasy, btnMedium, btnHard]);
