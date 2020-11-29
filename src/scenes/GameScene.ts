@@ -328,7 +328,7 @@ export default class GameScene extends Phaser.Scene {
           colour.ball,
           colour
         );
-        newTile.setVelocityY(Phaser.Math.Between(250, 275));
+        newTile.setVelocityY(Phaser.Math.Between(260, 285));
         this.descendingGroup.add(newTile);
         break;
       case DIFFICULTY.EASY:
@@ -347,7 +347,7 @@ export default class GameScene extends Phaser.Scene {
           colour.ball,
           colour
         );
-        newTile.setVelocityY(Phaser.Math.Between(250, 275));
+        newTile.setVelocityY(Phaser.Math.Between(260, 285));
         this.descendingGroup.add(newTile);
         break;
     }
