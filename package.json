@@ -2,10 +2,10 @@
   "name": "hyper-match",
   "version": "1.0.0",
   "description": "Quick arcade fun about matching the right colour",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "build": "npm run clean && parcel build index.html --no-source-maps --public-url . --out-dir dist",
-    "start": "npm run clean && parcel index.html",
+    "build": "yarn clean && parcel build index.html --no-source-maps --public-url . --out-dir dist",
+    "start": "yarn clean && parcel index.html",
     "clean": "rm -rfv dist/*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
