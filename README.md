@@ -12,11 +12,13 @@ This game is my [Devtober 2020](https://itch.io/jam/devtober-2020) entry - a chi
 
 All images are created by me. They're just coloured shapes... you can use them if you ever need rectangles or circles. I got the other assets from these places:
 
-Fonts: [Gugi](https://fonts.google.com/specimen/Gugi)
+Fonts:
+
+* [Gugi](https://fonts.google.com/specimen/Gugi)
+
 Sound:
 
 * Game over sound from [Storyblocks](https://www.storyblocks.com/audio/stock/wrong-incorrect-failure-answer-3-skkqmz8cd8k8umh8k9.html)
 * Colour match sound from [Zapsplat](https://www.zapsplat.com/music/cartoon-mouth-pop-5-2/)
 
 Made in the Caribbean with Phaser and &hearts;
-
