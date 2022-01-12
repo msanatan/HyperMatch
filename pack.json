@@ -1,0 +1,186 @@
+{
+  "hyperMatchPack": {
+    "files": [
+      {
+        "type": "image",
+        "key": "blueTile",
+        "url": "./images/blue-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "brownTile",
+        "url": "./images/brown-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "greenTile",
+        "url": "./images/green-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "greyTile",
+        "url": "./images/grey-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "orangeTile",
+        "url": "./images/orange-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "pinkTile",
+        "url": "./images/pink-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "purpleTile",
+        "url": "./images/purple-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "redTile",
+        "url": "./images/red-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "yellowTile",
+        "url": "./images/yellow-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBlackTile",
+        "url": "./images/collector-black-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBlueTile",
+        "url": "./images/collector-blue-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorBrownTile",
+        "url": "./images/collector-brown-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorGreenTile",
+        "url": "./images/collector-green-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorGreyTile",
+        "url": "./images/collector-grey-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorOrangeTile",
+        "url": "./images/collector-orange-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorPinkTile",
+        "url": "./images/collector-pink-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorPurpleTile",
+        "url": "./images/collector-purple-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorRedTile",
+        "url": "./images/collector-red-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "collectorYellowTile",
+        "url": "./images/collector-yellow-tile.png"
+      },
+      {
+        "type": "image",
+        "key": "blueBall",
+        "url": "./images/blue-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "brownBall",
+        "url": "./images/brown-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "greenBall",
+        "url": "./images/green-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "greyBall",
+        "url": "./images/grey-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "orangeBall",
+        "url": "./images/orange-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "pinkBall",
+        "url": "./images/pink-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "purpleBall",
+        "url": "./images/purple-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "redBall",
+        "url": "./images/red-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "yellowBall",
+        "url": "./images/yellow-ball.png"
+      },
+      {
+        "type": "image",
+        "key": "btnExit",
+        "url": "./images/btn-exit.png"
+      },
+      {
+        "type": "image",
+        "key": "btnRetry",
+        "url": "./images/btn-retry.png"
+      },
+      {
+        "type": "image",
+        "key": "btnPause",
+        "url": "./images/btn-pause.png"
+      },
+      {
+        "type": "image",
+        "key": "btnResume",
+        "url": "./images/btn-resume.png"
+      },
+      {
+        "type": "image",
+        "key": "btnBack",
+        "url": "./images/btn-back.png"
+      },
+      {
+        "type": "image",
+        "key": "btnFullscreen",
+        "url": "./images/btn-fullscreen.png"
+      },
+      {
+        "type": "audio",
+        "key": "sfxPop",
+        "url": "./audio/pop.mp3"
+      },
+      {
+        "type": "audio",
+        "key": "sfxLose",
+        "url": "./audio/lose.mp3"
+      }
+    ]
+  }
+}
